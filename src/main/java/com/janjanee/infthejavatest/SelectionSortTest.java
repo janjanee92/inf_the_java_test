@@ -22,14 +22,16 @@ public class SelectionSortTest {
                 }
             }
 
-            swap(arr, i, min);
+            if (i != min) {
+                swap(arr, i, min);
+            }
 
         }
 
     }
 
     public static void main(String[] args) {
-        int[] arr = {10, 12, 11, 40, 8 , 13, 20};
+        int[] arr = {5, 12, 11, 40, 8 , 13, 20};
 
         selectionSort(arr);
         System.out.println(Arrays.toString(arr));
