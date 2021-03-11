@@ -4,18 +4,28 @@ import java.util.Arrays;
 
 public class MergeSortTest {
 
-    static int[] buff;
+    static int[] buff;  //  임시 배열은 전역 변수로 지정하여 매번 buff를 새로 생성하지 않도록 한다.
 
-    private static void divideConquer(int[] arr, int left, int right) {
+    public static void mergeSort(int[] arr) {
+
+        // 배열 크기만큼 임시 배열 생성
+        buff = new int[arr.length];
+
+        // 분할 정복을 이용한 배열 전체 합병정렬
+        mergeSort(arr, 0, arr.length - 1);
+
+    }
+
+    private static void mergeSort(int[] arr, int left, int right) {
 
         // 크키가 1보다 큰 경우만 분할
         if (left < right) {
 
-            int center = (left + right) / 2;              //  중간을 기점으로 균등 분할 (분할)
+            int center = left + (right - left) / 2;  //  중간을 기점으로 균등 분할 (분할)
 
-            divideConquer(arr, left, center);            //  배열의 앞부분을 재귀적으로 합병정렬 (정복)
-            divideConquer(arr, center + 1, right);  //  배열의 뒷부분을 재귀적으로 합병정렬 (정복)
-            merge(arr, left, center, right);    //  실제 합병 수행
+            mergeSort(arr, left, center);            //  배열의 앞부분을 재귀적으로 합병정렬 (정복)
+            mergeSort(arr, center + 1, right);  //  배열의 뒷부분을 재귀적으로 합병정렬 (정복)
+            merge(arr, left, center, right);        //  실제 합병 수행
 
         }
     }
@@ -41,16 +51,6 @@ public class MergeSortTest {
         // 배열 buff에 남아 있는 요소를 배열 arr에 복사
         while (j < p)
             arr[k++] = buff[j++];
-
-    }
-
-    public static void mergeSort(int[] arr) {
-
-        // 배열 크기만큼 임시 배열 생성
-        buff = new int[arr.length];
-
-        // 분할 정복을 이용한 배열 전체 합병정렬
-        divideConquer(arr, 0, arr.length - 1);
 
     }
 
