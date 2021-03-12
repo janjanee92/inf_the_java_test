@@ -1,6 +1,5 @@
 package com.janjanee.infthejavatest;
 
-import java.sql.SQLOutput;
 import java.util.Arrays;
 
 public class KNumber {
@@ -11,10 +10,13 @@ public class KNumber {
 
         for (int[] command : commands) {
 
+            // 지정된 길이만큼 잘라서 tmp 배열 복사
             int[] tmp = Arrays.copyOfRange(array, command[0] - 1, command[1]);
 
+            // 정렬
             Arrays.sort(tmp);
 
+            // k값 찾기
             answer[i++] = tmp[command[2] - 1];
         }
 
