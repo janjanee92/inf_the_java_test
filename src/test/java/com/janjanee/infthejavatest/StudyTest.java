@@ -2,7 +2,9 @@ package com.janjanee.infthejavatest;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.ParameterContext;
+import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.aggregator.AggregateWith;
 import org.junit.jupiter.params.aggregator.ArgumentsAccessor;
@@ -23,6 +25,10 @@ class StudyTest {
 
     int value = 1;
 
+    @RegisterExtension
+    static FindSlowTestExtension findSlowTestExtension =
+            new FindSlowTestExtension(1000L);
+
     @Order(2)
     @FastTest
     void create_new_study() {
@@ -33,7 +39,8 @@ class StudyTest {
 
     @Order(1)
     @SlowTest
-    void create_new_study_again() {
+    void create_new_study_again() throws InterruptedException {
+        Thread.sleep(1005);
         System.out.println("create1");
         System.out.println(value++);
     }
