@@ -8,7 +8,9 @@ import java.lang.reflect.Method;
 
 public class FindSlowTestExtension implements BeforeTestExecutionCallback, AfterTestExecutionCallback {
 
-    private long THRESHOLD;
+    private long THRESHOLD = 1000L;
+
+    public FindSlowTestExtension () {}
 
     public FindSlowTestExtension(long THRESHOLD) {
         this.THRESHOLD = THRESHOLD;
@@ -40,6 +42,5 @@ public class FindSlowTestExtension implements BeforeTestExecutionCallback, After
         String testMethodName = context.getRequiredTestMethod().getName();
         return context.getStore(ExtensionContext.Namespace.create(testClassName, testMethodName));
     }
-
 
 }
