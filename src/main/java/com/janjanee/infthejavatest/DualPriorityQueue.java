@@ -1,6 +1,5 @@
 package com.janjanee.infthejavatest;
 
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
@@ -26,10 +25,6 @@ public class DualPriorityQueue {
         if (size >= 2) {
             answer[0] = max.poll();
             answer[1] = min.poll();
-        } else if (size == 1) {
-            int x = max.poll();
-            answer[0] = x;
-            answer[1] = x;
         }
 
         return answer;
@@ -53,10 +48,4 @@ public class DualPriorityQueue {
 
     }
 
-
-    public static void main(String[] args) {
-        DualPriorityQueue d = new DualPriorityQueue();
-        System.out.println(Arrays.toString(d.solution(
-                new String[]{"I 1", "I 2", "I 3", "I 4", "I 5", "D -1", "D -1","D -1", "D -1"})));
-    }
 }
