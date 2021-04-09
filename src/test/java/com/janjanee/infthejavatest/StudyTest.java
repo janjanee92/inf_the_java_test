@@ -30,7 +30,7 @@ class StudyTest {
     void create_new_study() {
         Study actual = new Study(100);
         System.out.println(value++);
-        assertThat(actual.getLimit()).isGreaterThan(0);
+        assertThat(actual.getLimitCount()).isGreaterThan(0);
     }
 
     @Order(1)
