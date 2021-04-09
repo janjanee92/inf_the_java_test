@@ -1,4 +1,6 @@
-package com.janjanee.infthejavatest;
+package com.janjanee.infthejavatest.domain;
+
+import com.janjanee.infthejavatest.study.StudyStatus;
 
 public class Study {
 
@@ -7,6 +9,8 @@ public class Study {
     private int limit;
 
     private String name;
+
+    private Member owner;
 
     public Study(int limit, String name) {
         this.limit = limit;
@@ -39,4 +43,9 @@ public class Study {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+    public void setOwner(Member owner) {
+        this.owner = owner;
+    }
+
 }
