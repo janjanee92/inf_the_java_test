@@ -38,8 +38,9 @@ public class Study {
         this.limitCount = limit;
     }
 
-    public void publish() {
+    public void open() {
         this.openedDateTime = LocalDateTime.now();
         this.status = StudyStatus.OPENED;
     }
+
 }
