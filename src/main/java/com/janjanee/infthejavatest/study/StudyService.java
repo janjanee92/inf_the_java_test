@@ -21,10 +21,13 @@ public class StudyService {
 
     public Study createNewStudy(Long memberId, Study study) {
         Optional<Member> member = memberService.findById(memberId);
-        study.setOwner(member.orElseThrow(() ->new IllegalArgumentException("Member doesn't exist for id: '" + memberId + "'")));
+        if (member.isPresent()) {
+            study.setOwnerId(memberId);
+        } else {
+            throw new IllegalArgumentException("Member doesn't exist for id: '" + memberId + "'");
+        }
         Study newstudy = repository.save(study);
         memberService.notify(newstudy);
-        memberService.notify(member.get());
         return newstudy;
     }
 
@@ -33,5 +36,9 @@ public class StudyService {
         Study openedStudy = repository.save(study);
         memberService.notify(openedStudy);
         return openedStudy;
+    }
+
+    public void hi() {
+
     }
 }
